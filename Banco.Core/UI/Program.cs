@@ -9,17 +9,14 @@ public class Program
     static void Main()
     {
         var save = new Save();
+        var auth = new AuthService(save);
+        
         Console.WriteLine("""
                           ===================
                           ~ ~ BEM VINDO! ~ ~
                           ===================
                           """);
         
-        string jsonPath = "Dados.json";
-        string jsonContent = File.ReadAllText(jsonPath);
-
-        if (string.IsNullOrEmpty(jsonContent))
-        {
             Console.WriteLine("Por favor selecione uma opção:\n1 - Criar Conta\n2 - Entrar em sua Conta");
             var op = Console.ReadLine();
             switch (op)
@@ -35,17 +32,19 @@ public class Program
                     
                     save.AddCustomer(currentCustomer);
                     
+                    LoggedIn(currentCustomer, currentAccount);
                     break;
                 case "2":
                     Console.Write("Digite o seu Email: ");
-                    var email_login = Console.ReadLine();
+                    var email_login = Console.ReadLine(); 
+                    Customer customer = save.GetCustomerByEmail(email_login);
+                    
                     
                     break;
                 default:
                     Console.WriteLine("Operação inválida, Digite 1 ou 2!");
                     break;
             }
-        }
     }
     static string ReadNonEmptyString(string prompt, int type=0)
     {
@@ -115,7 +114,7 @@ public class Program
        
     }
 
-    void LoggedIn(Customer customerAtual, Account currentAccount)
+    static void LoggedIn(Customer customerAtual, Account currentAccount)
     {
         string op;
         do
@@ -138,7 +137,7 @@ public class Program
             switch (op)
             {
                 case "1":
-                    Console.WriteLine($"SEU SALDO ATUAL: {currentAccount.Balance}");
+                    Console.WriteLine($"SEU SALDO ATUAL: {currentAccount.Balance.Amount}");
                     break;
                 case "2":
                     Console.Write("Digite o valor a ser depositado: ");

@@ -2,7 +2,7 @@ namespace Banco.Core.ValueObjects;
 
 public class Money
 {
-    private decimal Amount { get;}
+    public decimal Amount { get;}
 
     public Money(decimal amount)
     {

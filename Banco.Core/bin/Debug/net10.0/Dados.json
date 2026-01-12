@@ -1,0 +1,16 @@
+[
+  {
+    "Id": "545acf02-e5f5-40d4-a9a5-64a7ea2d4a48",
+    "Name": "Victor Mellos",
+    "Email": "victor@gmail.com",
+    "PhoneNumber": "47991878697",
+    "PasswordHash": "$2a$12$6Khxij0q9OeemfiRfbGhvus2RFSWvwp74WuuJkpsI6xaqDoUU9aOe"
+  },
+  {
+    "Id": "50454a2c-d716-489e-93dc-1a482b86d9c7",
+    "Name": "victormellos",
+    "Email": "victor@gmail.com",
+    "PhoneNumber": "47991878697",
+    "PasswordHash": "$2a$12$hbKMgyTWpVZZPj8c7LPlo.HkbX7q9xTC8WyCVYbiOGCnWvzDQrAwG"
+  }
+]

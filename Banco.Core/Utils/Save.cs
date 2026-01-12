@@ -7,26 +7,13 @@ namespace Banco.Core.Utils
     {
         private readonly string _jsonPath = "Dados.json";
         private List<Customer> _customers;
-
+        
         public Save()
         {
             LoadCustomers();
         }
 
-        public bool TryLogin(string email, string password)
-        {
-            var customer = _customers.Find(c => c.Email == email);
-            if (customer == null) return false;
-
-            return Password.VerifyPassword(password, customer.PasswordHash);
-        }
-
-        public bool DoesSaveExist()
-        {
-            return File.Exists(_jsonPath) && !string.IsNullOrWhiteSpace(File.ReadAllText(_jsonPath));
-        }
-
-        private void LoadCustomers()
+        private void LoadCustomers() // de json pra classe
         {
             if (!File.Exists(_jsonPath))
             {
@@ -38,7 +25,7 @@ namespace Banco.Core.Utils
             _customers = JsonSerializer.Deserialize<List<Customer>>(json) ?? new List<Customer>();
         }
 
-        private void SaveCustomers()
+        private void SaveCustomers() // de classe pra json
         {
             string json = JsonSerializer.Serialize(_customers, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_jsonPath, json);
@@ -49,5 +36,14 @@ namespace Banco.Core.Utils
             _customers.Add(customer);
             SaveCustomers();
         }
+        
+        public Customer? GetCustomerByEmail(string email)
+        {
+            Customer? customerByMail =  _customers.FirstOrDefault(c => c.Email == email);
+            Console.WriteLine("");
+        }
+
+        
+        
     }
 }
